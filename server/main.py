@@ -4,4 +4,4 @@ from bottle import route, run, request, response
 def home():
     return "Dev Auction"
 
-run(host='localhost', port=8081, reloader=True, server='cherrypy')
+run(host='localhost', port=8082, reloader=True, server='cherrypy')
