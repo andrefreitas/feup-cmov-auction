@@ -8,13 +8,15 @@ URL = "http://localhost:8082/api"
 class TestApi(unittest.TestCase):
     def setUp(self):
         data.drop_data_base()
-
-    def test_register(self):
-        payload = {
+        data.create_data_base()
+        self.customer1 = {
             "name": "Carlos Andrade",
             "email": "carlos@fe.up.pt",
             "password": "521ku7L7eS8Y"
         }
+
+    def test_register(self):
+        payload = self.customer1
 
         # Valid registration
         answer = requests.post(URL + "/register", params=payload)
@@ -26,6 +28,9 @@ class TestApi(unittest.TestCase):
 
         # Clear
         data.drop_data_base()
+
+
+
 
 
 
