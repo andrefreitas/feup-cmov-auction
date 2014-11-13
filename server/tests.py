@@ -29,7 +29,22 @@ class TestApi(unittest.TestCase):
         # Clear
         data.drop_data_base()
 
+    def test_bid(self):
+        data.create_data_base()
+        customer = requests.post(URL + "/register", params=self.customer1)
 
+        # Create bid
+        payload = {
+            "value": 7.45,
+            "date": "15/11/2014",
+            "customerID": customer["id"]
+        }
+
+        answer = requests.post(URL + "/bid", params=payload)
+        self.assertEqual(answer.status_code, 200)
+
+        # Clear
+        data.drop_data_base()
 
 
 
