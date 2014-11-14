@@ -31,7 +31,7 @@ class TestApi(unittest.TestCase):
 
     def test_bid(self):
         data.create_data_base()
-        customer = requests.post(URL + "/register", params=self.customer1)
+        customer = requests.post(URL + "/register", params=self.customer1).json()
 
         # Create bid
         payload = {

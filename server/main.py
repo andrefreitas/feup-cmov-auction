@@ -17,5 +17,16 @@ def register():
     else:
         return {"id": str(result)}
 
+@route("/api/bid", method="POST")
+def bid():
+    customerID = request.params.get("customerID")
+    value =  request.params.get("value")
+    date = request.params.get("date")
+    result = data.create_bid(value, date, customerID)
+    if result is False:
+        response.status = 400
+    else:
+        return result
+
 
 run(host='localhost', port=8082, reloader=True, server='cherrypy')

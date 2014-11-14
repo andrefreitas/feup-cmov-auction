@@ -35,7 +35,7 @@ def create_customer(name, email, password):
 def create_bid(value, date, customerID):
     bid_doc = {
         "value": float(value),
-        "date": helpers.format_date(date),
+        "date": helpers.parse_date(date, "%d/%m/%Y"),
         "customerID": ObjectId(customerID)
     }
 
