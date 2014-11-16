@@ -1,53 +1,50 @@
+from webtest import TestApp
 import unittest
-import requests
 import data
-
-URL = "http://localhost:8082/api"
+import app
+import helpers
 
 
 class TestApi(unittest.TestCase):
     def setUp(self):
+        self.app = TestApp(app.app)
         data.drop_data_base()
-        data.create_data_base()
-        self.customer1 = {
+
+    def test_create_customer(self):
+        customer_doc = {
             "name": "Carlos Andrade",
             "email": "carlos@fe.up.pt",
             "password": "521ku7L7eS8Y"
         }
 
-    def test_register(self):
-        payload = self.customer1
+        # Valid Registration
+        answer = self.app.post("/api/customers", customer_doc)
+        self.assertEqual(answer.status_int, 200)
 
-        # Valid registration
-        answer = requests.post(URL + "/register", params=payload)
-        self.assertEqual(answer.status_code, 200)
+        # Check that was saved correctly
+        customer_id = answer.json["id"]
+        customer = data.get_customer(customer_id)
+        self.assertEqual(customer["name"], customer_doc["name"])
+        self.assertEqual(customer["email"], customer_doc["email"])
+        self.assertEqual(customer["password"], helpers.encrypt_password(customer_doc["password"]))
 
-        # Invalid registration
-        answer = requests.post(URL + "/register", params=payload)
-        self.assertEqual(answer.status_code, 400)
+        # Registration with same email
+        answer = self.app.post("/api/customers", params=customer_doc, expect_errors=True)
+        self.assertEqual(answer.status_int, 400)
 
-        # Clear
-        data.drop_data_base()
-
-    def test_bid(self):
-        data.create_data_base()
-        customer = requests.post(URL + "/register", params=self.customer1).json()
-
-        # Create bid
-        payload = {
-            "value": 7.45,
-            "date": "15/11/2014",
-            "customerID": customer["id"]
+         # Registration with invalid email
+        customer_doc = {
+            "name": "Carlos Andrade",
+            "email": "carlosfe.up.pt",
+            "password": "521ku7L7eS8Y"
         }
+        answer = self.app.post("/api/customers", params=customer_doc, expect_errors=True)
+        self.assertEqual(answer.status_int, 400)
 
-        answer = requests.post(URL + "/bid", params=payload)
-        self.assertEqual(answer.status_code, 200)
 
-        # Clear
+
+    def tearDown(self):
         data.drop_data_base()
-
-
-
 
 if __name__ == '__main__':
     unittest.main()
