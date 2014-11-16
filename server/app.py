@@ -1,4 +1,5 @@
 from bottle import route, run, request, response, Bottle
+from bson.objectid import ObjectId
 import data
 
 app = Bottle()
@@ -37,6 +38,14 @@ def create_bid():
         response.status = 400
     else:
         return result
+
+@app.route("/api/auctions", method="POST")
+def create_auction():
+    name = request.params.get("name")
+    minimum_bid = int(request.params.get("minimum_bid"))
+    photo = request.files.get("photo")
+    auction_id = db.create_auction(name, minimum_bid, photo)
+    return {"id": str(auction_id)}
 
 
 if __name__ == '__main__':
