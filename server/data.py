@@ -2,6 +2,7 @@ from pymongo import MongoClient, errors
 from bson.objectid import ObjectId
 import helpers
 import gridfs
+import datetime
 
 
 class DataBase:
@@ -49,7 +50,9 @@ class DataBase:
         auction_doc = {
             "name": name,
             "minimum_bid": minimum_bid,
-            "photo_id": photo_id
+            "photo_id": photo_id,
+            "state": "open",
+            "date": datetime.datetime.utcnow()
         }
         return self.db.auctions.insert(auction_doc)
 
@@ -62,3 +65,14 @@ class DataBase:
 
         bid_id = self.db.bids.insert(bid_doc)
         return {"id": str(bid_id)}
+
+    def get_auctions(self):
+        cursor = self.db.auctions.find()
+        results = []
+        for doc in cursor:
+            doc["id"] = str(doc["_id"])
+            doc["photo_id"] = str(doc["photo_id"])
+            doc["date"] = helpers.format_date(doc["date"])
+            del doc["id"]
+            results.append(doc)
+        return results

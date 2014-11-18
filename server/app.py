@@ -1,5 +1,5 @@
-from bottle import route, run, request, response, Bottle
-from bson.objectid import ObjectId
+from bottle import route, run, request, response, Bottle, static_file
+from bson.json_util import dumps
 import data
 
 app = Bottle()
@@ -7,6 +7,7 @@ db = data.DataBase("auction")
 
 @app.route("/api/customers", method="POST")
 def create_customer():
+    response.content_type = 'application/json'
     name = request.params.get("name")
     email = request.params.get("email")
     password = request.params.get("password")
@@ -19,6 +20,7 @@ def create_customer():
 
 @app.route("/api/login", method="POST")
 def login():
+    response.content_type = 'application/json'
     email = request.params.get("email")
     password = request.params.get("password")
     customer = db.login(email, password)
@@ -30,6 +32,7 @@ def login():
 
 @app.route("/api/bid", method="POST")
 def create_bid():
+    response.content_type = 'application/json'
     customer_id = request.params.get("customerID")
     value = request.params.get("value")
     date = request.params.get("date")
@@ -41,11 +44,24 @@ def create_bid():
 
 @app.route("/api/auctions", method="POST")
 def create_auction():
+    response.content_type = 'application/json'
     name = request.params.get("name")
     minimum_bid = int(request.params.get("minimum_bid"))
     photo = request.files.get("photo")
     auction_id = db.create_auction(name, minimum_bid, photo)
     return {"id": str(auction_id)}
+
+@app.route("/api/auctions", method="GET")
+def get_auctions():
+    response.content_type = 'application/json'
+    answer_json = dumps(db.get_auctions())
+    return answer_json
+
+
+@app.route("/api/photos/:photo_id", method="GET")
+def get_photo(photo_id):
+    return static_file(photo_id, root='images', mimetype='image/png')
+
 
 
 if __name__ == '__main__':

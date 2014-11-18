@@ -1,9 +1,8 @@
 from webtest import TestApp, Upload
 import unittest
-import data
 import app
 import helpers
-import time
+import datetime
 
 
 class TestApi(unittest.TestCase):
@@ -80,9 +79,51 @@ class TestApi(unittest.TestCase):
         auction_id = answer.json["id"]
         auction_saved = self.db.get_auction(auction_id)
         photo_saved = Upload('images/' + auction_saved["photo_id"])
+        now = datetime.datetime.now()
+
         self.assertEqual(auction_doc["name"], auction_saved["name"])
+        self.assertEqual(now.day, auction_saved["date"].day)
+        self.assertEqual(now.month, auction_saved["date"].month)
+        self.assertEqual(now.year, auction_saved["date"].year)
+        self.assertEqual("open", auction_saved["state"])
         self.assertEqual(int(auction_doc["minimum_bid"]), auction_saved["minimum_bid"])
         self.assertEqual(photo.content, photo_saved.content)
+
+    def test_get_auctions(self):
+        photo = Upload('images/monalisa.jpeg')
+        auction_doc = {
+            "name": "Quadro Mona Lisa",
+            "minimum_bid": "4230",
+            "photo": photo
+        }
+        self.app.post("/api/auctions", params=auction_doc)
+
+        photo = Upload('images/thescream.jpeg')
+        auction_doc = {
+            "name": "The Scream",
+            "minimum_bid": "10000",
+            "photo": photo
+        }
+        self.app.post("/api/auctions", params=auction_doc)
+
+        # Test that the auctions are retrieved
+        auctions = self.app.get("/api/auctions")
+        now = helpers.format_date(datetime.datetime.now())
+        self.assertTrue(len(auctions.json) >= 2)
+        results1 = list(filter(lambda auction: auction["name"] == "Quadro Mona Lisa" and auction["minimum_bid"] == 4230 and "photo_id" in auction and auction["date"] == now, auctions.json))
+        self.assertTrue(len(results1) == 1)
+        results = list(filter(lambda auction: auction["name"] == "The Scream" and auction["minimum_bid"] == 10000 and "photo_id" in auction and auction["date"] == now, auctions.json))
+        self.assertTrue(len(results) == 1)
+
+        #Test that the image from Mona Lisa can be retrieved
+        photo_id = results1[0]["photo_id"]
+        result = self.app.get("/api/photos/" + photo_id)
+        image_bytes = open('images/monalisa.jpeg', "rb").read()
+        self.assertTrue(result.body == image_bytes)
+
+
+
+
 
 
 
