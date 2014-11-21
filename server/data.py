@@ -57,16 +57,6 @@ class DataBase:
         }
         return self.db.auctions.insert(auction_doc)
 
-    def create_bid(self, value, date, customer_id):
-        bid_doc = {
-            "value": float(value),
-            "date": datetime.datetime.utcnow(),
-            "customerID": ObjectId(customer_id)
-        }
-
-        bid_id = self.db.bids.insert(bid_doc)
-        return {"id": str(bid_id)}
-
     def get_auctions(self):
         cursor = self.db.auctions.find()
         results = []
@@ -94,7 +84,7 @@ class DataBase:
                         }
 
                         self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$push": {"bids": bid_doc}}, True)
-                        return bid_doc
+                        return True
                     else:
                         return False
                 else:
@@ -105,8 +95,8 @@ class DataBase:
                             "customerID": ObjectId(customer_id)
                         }
 
-                        a = self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$push": {"bids": bid_doc}}, True)
-                        return bid_doc
+                        self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$push": {"bids": bid_doc}}, True)
+                        return True
                     else:
                         return False
         else:

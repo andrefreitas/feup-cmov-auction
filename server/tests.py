@@ -140,8 +140,8 @@ class TestApi(unittest.TestCase):
             "date": datetime.datetime.now()
 
         }
-        doc = self.app.post("/api/bid", params=bid_doc)
-        a = 2
+        answer = self.app.post("/api/bid", params=bid_doc)
+        self.assertEqual(answer.status_int, 200)
 
 
 
