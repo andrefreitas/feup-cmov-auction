@@ -134,14 +134,27 @@ class TestApi(unittest.TestCase):
         auction_id = answer.json["id"]
 
         bid_doc = {
-            "value": "4500",
+            "value": "4000",
             "customerID": self.customer1_id,
             "auctionID": auction_id,
             "date": datetime.datetime.now()
 
         }
+
+        answer = self.app.post("/api/bid", params=bid_doc, expect_errors=True)
+        self.assertEqual(answer.status_int, 400)
+
+        bid_doc["value"] = 4500
         answer = self.app.post("/api/bid", params=bid_doc)
         self.assertEqual(answer.status_int, 200)
+
+        bid_doc["value"] = 4700
+        answer = self.app.post("/api/bid", params=bid_doc)
+        self.assertEqual(answer.status_int, 200)
+
+        bid_doc["value"] = 4600
+        answer = self.app.post("/api/bid", params=bid_doc, expect_errors=True)
+        self.assertEqual(answer.status_int, 400)
 
 
 

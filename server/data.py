@@ -72,32 +72,30 @@ class DataBase:
         auction = self.db.auctions.find_one(ObjectId(auction_id))
 
         if auction and auction["state"] == "open":
-            auction_bids = self.db.auctions.find({"_id": ObjectId(auction_id)}).sort("bids.value", -1).limit(1)
+            if len(auction["bids"]) > 0:
+                bids_size = len(auction["bids"])
+                if auction["bids"][bids_size-1]["value"] < value and value > auction["minimum_bid"]:
+                    bid_doc = {
+                        "value": float(value),
+                        "date": datetime.datetime.utcnow(),
+                        "customerID": ObjectId(customer_id)
+                    }
 
-            if auction_bids.count() > 0:
-                if len(auction_bids[0]["bids"]) > 0:
-                    if auction_bids[0]["bids"][0]["value"] < value and value > auction_bids[0]["minimum_bid"]:
-                        bid_doc = {
-                            "value": float(value),
-                            "date": datetime.datetime.utcnow(),
-                            "customerID": ObjectId(customer_id)
-                        }
-
-                        self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$push": {"bids": bid_doc}}, True)
-                        return True
-                    else:
-                        return False
+                    self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$push": {"bids": bid_doc}}, True)
+                    return True
                 else:
-                    if value > auction["minimum_bid"]:
-                        bid_doc = {
-                            "value": float(value),
-                            "date": datetime.datetime.utcnow(),
-                            "customerID": ObjectId(customer_id)
-                        }
+                    return False
+            else:
+                if value > auction["minimum_bid"]:
+                    bid_doc = {
+                        "value": float(value),
+                        "date": datetime.datetime.utcnow(),
+                        "customerID": ObjectId(customer_id)
+                    }
 
-                        self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$push": {"bids": bid_doc}}, True)
-                        return True
-                    else:
-                        return False
+                    self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$push": {"bids": bid_doc}}, True)
+                    return True
+                else:
+                    return False
         else:
             return False
