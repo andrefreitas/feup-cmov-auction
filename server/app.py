@@ -34,9 +34,10 @@ def login():
 def create_bid():
     response.content_type = 'application/json'
     customer_id = request.params.get("customerID")
-    value = request.params.get("value")
+    value = float(request.params.get("value"))
     date = request.params.get("date")
-    result = db.create_bid(value, date, customer_id)
+    auction_id = request.params.get("auctionID")
+    result = db.create_bid(value, date, customer_id, auction_id)
     if result is False:
         response.status = 400
     else:
@@ -61,7 +62,6 @@ def get_auctions():
 @app.route("/api/photos/:photo_id", method="GET")
 def get_photo(photo_id):
     return static_file(photo_id, root='images', mimetype='image/png')
-
 
 
 if __name__ == '__main__':

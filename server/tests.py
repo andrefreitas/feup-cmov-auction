@@ -123,7 +123,25 @@ class TestApi(unittest.TestCase):
 
 
 
+    def test_bid(self):
+        photo = Upload('images/monalisa.jpeg')
+        auction_doc = {
+            "name": "Quadro Mona Lisa",
+            "minimum_bid": "4230",
+            "photo": photo
+        }
+        answer = self.app.post("/api/auctions", params=auction_doc)
+        auction_id = answer.json["id"]
 
+        bid_doc = {
+            "value": "4500",
+            "customerID": self.customer1_id,
+            "auctionID": auction_id,
+            "date": datetime.datetime.now()
+
+        }
+        doc = self.app.post("/api/bid", params=bid_doc)
+        a = 2
 
 
 

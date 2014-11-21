@@ -52,14 +52,15 @@ class DataBase:
             "minimum_bid": minimum_bid,
             "photo_id": photo_id,
             "state": "open",
-            "date": datetime.datetime.utcnow()
+            "date": datetime.datetime.utcnow(),
+            "bids": []
         }
         return self.db.auctions.insert(auction_doc)
 
     def create_bid(self, value, date, customer_id):
         bid_doc = {
             "value": float(value),
-            "date": helpers.parse_date(date, "%d/%m/%Y"),
+            "date": datetime.datetime.utcnow(),
             "customerID": ObjectId(customer_id)
         }
 
@@ -76,3 +77,37 @@ class DataBase:
             del doc["id"]
             results.append(doc)
         return results
+
+    def create_bid(self, value, date, customer_id, auction_id):
+        auction = self.db.auctions.find_one(ObjectId(auction_id))
+
+        if auction and auction["state"] == "open":
+            auction_bids = self.db.auctions.find({"_id": ObjectId(auction_id)}).sort("bids.value", -1).limit(1)
+
+            if auction_bids.count() > 0:
+                if len(auction_bids[0]["bids"]) > 0:
+                    if auction_bids[0]["bids"][0]["value"] < value and value > auction_bids[0]["minimum_bid"]:
+                        bid_doc = {
+                            "value": float(value),
+                            "date": datetime.datetime.utcnow(),
+                            "customerID": ObjectId(customer_id)
+                        }
+
+                        self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$push": {"bids": bid_doc}}, True)
+                        return bid_doc
+                    else:
+                        return False
+                else:
+                    if value > auction["minimum_bid"]:
+                        bid_doc = {
+                            "value": float(value),
+                            "date": datetime.datetime.utcnow(),
+                            "customerID": ObjectId(customer_id)
+                        }
+
+                        a = self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$push": {"bids": bid_doc}}, True)
+                        return bid_doc
+                    else:
+                        return False
+        else:
+            return False
