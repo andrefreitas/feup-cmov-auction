@@ -136,14 +136,14 @@ class TestApi(unittest.TestCase):
         bid_doc = {
             "value": "4000",
             "customerID": self.customer1_id,
-            "auctionID": auction_id,
-            "date": datetime.datetime.now()
-
+            "auctionID": auction_id
         }
 
+        # Test that value of bid cannot be under minimum bid
         answer = self.app.post("/api/bid", params=bid_doc, expect_errors=True)
         self.assertEqual(answer.status_int, 400)
 
+        # Test bids ok
         bid_doc["value"] = 4500
         answer = self.app.post("/api/bid", params=bid_doc)
         self.assertEqual(answer.status_int, 200)
@@ -152,6 +152,7 @@ class TestApi(unittest.TestCase):
         answer = self.app.post("/api/bid", params=bid_doc)
         self.assertEqual(answer.status_int, 200)
 
+        # Test new bid cannot me under any of other bids
         bid_doc["value"] = 4600
         answer = self.app.post("/api/bid", params=bid_doc, expect_errors=True)
         self.assertEqual(answer.status_int, 400)

@@ -35,9 +35,8 @@ def create_bid():
     response.content_type = 'application/json'
     customer_id = request.params.get("customerID")
     value = float(request.params.get("value"))
-    date = request.params.get("date")
     auction_id = request.params.get("auctionID")
-    result = db.create_bid(value, date, customer_id, auction_id)
+    result = db.create_bid(value, customer_id, auction_id)
     if result is False:
         response.status = 400
     else:

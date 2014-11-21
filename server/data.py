@@ -68,7 +68,7 @@ class DataBase:
             results.append(doc)
         return results
 
-    def create_bid(self, value, date, customer_id, auction_id):
+    def create_bid(self, value, customer_id, auction_id):
         auction = self.db.auctions.find_one(ObjectId(auction_id))
 
         if auction and auction["state"] == "open":
