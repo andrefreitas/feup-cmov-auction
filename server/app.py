@@ -62,6 +62,16 @@ def get_auctions():
 def get_photo(photo_id):
     return static_file(photo_id, root='images', mimetype='image/png')
 
+@app.route("/api/endauctions", method="POST")
+def end_auction():
+    response.content_type = 'application/json'
+    auctionID = request.params.get("auctionID")
+    answer = db.end_auction(auctionID)
+    if answer:
+        response.status = 200
+    else:
+        response.status = 400
+
 
 if __name__ == '__main__':
     run(app, host='localhost', port=8082, reloader=True, server='cherrypy')

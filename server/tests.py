@@ -157,6 +157,35 @@ class TestApi(unittest.TestCase):
         answer = self.app.post("/api/bid", params=bid_doc, expect_errors=True)
         self.assertEqual(answer.status_int, 400)
 
+    def test_end_auction(self):
+        photo = Upload('images/monalisa.jpeg')
+        auction_doc = {
+            "name": "Quadro Mona Lisa",
+            "minimum_bid": "4230",
+            "photo": photo
+        }
+        answer = self.app.post("/api/auctions", params=auction_doc)
+        auction_id = answer.json["id"]
+
+        auction =  {
+            "auctionID": auction_id
+        }
+
+        # Test that state has changed
+        answer = self.app.post("/api/endauctions", params=auction)
+        self.assertEqual(answer.status_int, 200)
+
+        auctions = self.app.get("/api/auctions")
+        results1 = list(filter(lambda auction: auction["name"] == "Quadro Mona Lisa" and auction["minimum_bid"] == 4230 and "photo_id" in auction and auction["state"]=="finished", auctions.json))
+        self.assertTrue(len(results1) == 1)
+
+        # Test that there is no auction with that ID
+        auction["auctionID"] = "123456789123456789132457"
+        answer = self.app.post("/api/endauctions", params=auction, expect_errors=True)
+        self.assertEqual(answer.status_int, 400)
+
+
+
 
 
 

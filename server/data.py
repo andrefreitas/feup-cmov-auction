@@ -99,3 +99,11 @@ class DataBase:
                     return False
         else:
             return False
+
+    def end_auction(self, auction_id):
+        auction = self.db.auctions.find_one(ObjectId(auction_id))
+        if auction:
+            self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$set": {"state": "finished"}})
+            return True
+        else:
+            return False
