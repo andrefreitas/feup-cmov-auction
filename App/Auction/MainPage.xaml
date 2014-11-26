@@ -31,11 +31,10 @@
             FontSize="34" 
             Width="298" 
             RenderTransformOrigin="0.46,0.523"/>
-        <TextBox 
+        <PasswordBox 
             x:Name="passwordTextBox" 
             HorizontalAlignment="Left"
             Margin="53,195,0,0" 
-            TextWrapping="Wrap"
             VerticalAlignment="Top" 
             Width="298" 
             PlaceholderText="Password"/>
@@ -44,7 +43,7 @@
                 HorizontalAlignment="Left" 
                 Margin="53,247,0,0" 
                 VerticalAlignment="Top" 
-                Width="298"/>
+                Width="298" Click="loginButton_Click"/>
          
     </Grid>
 </Page>

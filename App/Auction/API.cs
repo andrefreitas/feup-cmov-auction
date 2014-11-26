@@ -18,15 +18,24 @@ namespace Auction
                 values.Add("name", name);
                 values.Add("email", email);
                 values.Add("password", password);
-                JObject answer = await request(values);
+                JObject answer = await postRequest(values, "/customers");
                 return answer;
         }
 
-        public static async Task<JObject> request(Dictionary<string, string> param) 
+        public static async Task<JObject> login(String email, String password)
+        {
+            var values = new Dictionary<string, string>();
+            values.Add("email", email);
+            values.Add("password", password);
+            JObject answer = await postRequest(values, "/login");
+            return answer;
+        }
+
+        public static async Task<JObject> postRequest(Dictionary<string, string> param, String path) 
         {
             JObject json = new JObject();
             HttpClient httpClient = new HttpClient();
-            Uri uri = new Uri(API_URL + "/customers");
+            Uri uri = new Uri(API_URL + path);
 
             httpClient.DefaultRequestHeaders.Accept.TryParseAdd("application/json");
             var content = new FormUrlEncodedContent(param);

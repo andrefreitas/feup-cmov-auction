@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Popups;
 using Newtonsoft.Json.Linq;
+using Windows.Storage;
 
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
@@ -69,8 +70,10 @@ namespace Auction
             try  {
                 JObject json = await API.register(name, email, password);
                 String id = (string) json["id"];
+                ApplicationData.Current.LocalSettings.Values["id"] = id;
                 MessageDialog msgbox = new MessageDialog("Registo efetuado com sucesso!");
                 await msgbox.ShowAsync();
+                Frame.Navigate(typeof(HomePage));
             }
             catch (Exception ex){
                 String msg = ex.Message;
