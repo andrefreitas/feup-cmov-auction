@@ -121,5 +121,67 @@ class TestApi(unittest.TestCase):
         image_bytes = open('images/monalisa.jpeg', "rb").read()
         self.assertTrue(result.body == image_bytes)
 
+    def test_bid(self):
+        photo = Upload('images/monalisa.jpeg')
+        auction_doc = {
+            "name": "Quadro Mona Lisa",
+            "minimum_bid": "4230",
+            "photo": photo
+        }
+        answer = self.app.post("/api/auctions", params=auction_doc)
+        auction_id = answer.json["id"]
+
+        bid_doc = {
+            "value": "4000",
+            "customerID": self.customer1_id,
+            "auctionID": auction_id
+        }
+
+        # Test that value of bid cannot be under minimum bid
+        answer = self.app.post("/api/bid", params=bid_doc, expect_errors=True)
+        self.assertEqual(answer.status_int, 400)
+
+        # Test bids ok
+        bid_doc["value"] = 4500
+        answer = self.app.post("/api/bid", params=bid_doc)
+        self.assertEqual(answer.status_int, 200)
+
+        bid_doc["value"] = 4700
+        answer = self.app.post("/api/bid", params=bid_doc)
+        self.assertEqual(answer.status_int, 200)
+
+        # Test new bid cannot me under any of other bids
+        bid_doc["value"] = 4600
+        answer = self.app.post("/api/bid", params=bid_doc, expect_errors=True)
+        self.assertEqual(answer.status_int, 400)
+
+    def test_end_auction(self):
+        photo = Upload('images/monalisa.jpeg')
+        auction_doc = {
+            "name": "Quadro Mona Lisa",
+            "minimum_bid": "4230",
+            "photo": photo
+        }
+        answer = self.app.post("/api/auctions", params=auction_doc)
+        auction_id = answer.json["id"]
+
+        auction =  {
+            "auctionID": auction_id
+        }
+
+        # Test that state has changed
+        answer = self.app.post("/api/endauctions", params=auction)
+        self.assertEqual(answer.status_int, 200)
+
+        auctions = self.app.get("/api/auctions")
+        results1 = list(filter(lambda auction: auction["name"] == "Quadro Mona Lisa" and auction["minimum_bid"] == 4230 and "photo_id" in auction and auction["state"]=="finished", auctions.json))
+        self.assertTrue(len(results1) == 1)
+
+        # Test that there is no auction with that ID
+        auction["auctionID"] = "123456789123456789132457"
+        answer = self.app.post("/api/endauctions", params=auction, expect_errors=True)
+        self.assertEqual(answer.status_int, 400)
+
+
 if __name__ == '__main__':
     unittest.main()

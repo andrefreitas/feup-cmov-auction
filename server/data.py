@@ -52,19 +52,10 @@ class DataBase:
             "minimum_bid": minimum_bid,
             "photo_id": photo_id,
             "state": "open",
-            "date": datetime.datetime.utcnow()
+            "date": datetime.datetime.utcnow(),
+            "bids": []
         }
         return self.db.auctions.insert(auction_doc)
-
-    def create_bid(self, value, date, customer_id):
-        bid_doc = {
-            "value": float(value),
-            "date": helpers.parse_date(date, "%d/%m/%Y"),
-            "customerID": ObjectId(customer_id)
-        }
-
-        bid_id = self.db.bids.insert(bid_doc)
-        return {"id": str(bid_id)}
 
     def get_auctions(self):
         cursor = self.db.auctions.find()
@@ -76,3 +67,43 @@ class DataBase:
             del doc["id"]
             results.append(doc)
         return results
+
+    def create_bid(self, value, customer_id, auction_id):
+        auction = self.db.auctions.find_one(ObjectId(auction_id))
+
+        if auction and auction["state"] == "open":
+            if len(auction["bids"]) > 0:
+                bids_size = len(auction["bids"])
+                if auction["bids"][bids_size-1]["value"] < value and value > auction["minimum_bid"]:
+                    bid_doc = {
+                        "value": float(value),
+                        "date": datetime.datetime.utcnow(),
+                        "customerID": ObjectId(customer_id)
+                    }
+
+                    self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$push": {"bids": bid_doc}}, True)
+                    return True
+                else:
+                    return False
+            else:
+                if value > auction["minimum_bid"]:
+                    bid_doc = {
+                        "value": float(value),
+                        "date": datetime.datetime.utcnow(),
+                        "customerID": ObjectId(customer_id)
+                    }
+
+                    self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$push": {"bids": bid_doc}}, True)
+                    return True
+                else:
+                    return False
+        else:
+            return False
+
+    def end_auction(self, auction_id):
+        auction = self.db.auctions.find_one(ObjectId(auction_id))
+        if auction:
+            self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$set": {"state": "finished"}})
+            return True
+        else:
+            return False
