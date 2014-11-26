@@ -121,12 +121,5 @@ class TestApi(unittest.TestCase):
         image_bytes = open('images/monalisa.jpeg', "rb").read()
         self.assertTrue(result.body == image_bytes)
 
-
-
-
-
-
-
-
 if __name__ == '__main__':
     unittest.main()
