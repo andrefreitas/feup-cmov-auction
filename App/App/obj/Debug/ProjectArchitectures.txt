@@ -1,1 +1,0 @@
-C:\git\feup-cmov-auction\App\App\App.csproj;neutral

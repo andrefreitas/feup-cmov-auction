@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
-namespace App
+namespace Auction
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -44,5 +44,15 @@ namespace App
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
         }
+
+        private void registerButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(RegisterPage));
+        }
+
+
+  
+
+    
     }
 }
