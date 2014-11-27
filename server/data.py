@@ -64,7 +64,7 @@ class DataBase:
             doc["id"] = str(doc["_id"])
             doc["photo_id"] = str(doc["photo_id"])
             doc["date"] = helpers.format_date(doc["date"])
-            del doc["id"]
+            del doc["_id"]
             results.append(doc)
         return results
 

@@ -110,9 +110,9 @@ class TestApi(unittest.TestCase):
         auctions = self.app.get("/api/auctions")
         now = helpers.format_date(datetime.datetime.now())
         self.assertTrue(len(auctions.json) >= 2)
-        results1 = list(filter(lambda auction: auction["name"] == "Quadro Mona Lisa" and auction["minimum_bid"] == 4230 and "photo_id" in auction and auction["date"] == now, auctions.json))
+        results1 = list(filter(lambda auction: auction["name"] == "Quadro Mona Lisa" and auction["minimum_bid"] == 4230 and "photo_id" in auction and auction["date"] == now and "id" in auction, auctions.json))
         self.assertTrue(len(results1) == 1)
-        results = list(filter(lambda auction: auction["name"] == "The Scream" and auction["minimum_bid"] == 10000 and "photo_id" in auction and auction["date"] == now, auctions.json))
+        results = list(filter(lambda auction: auction["name"] == "The Scream" and auction["minimum_bid"] == 10000 and "photo_id" in auction and auction["date"] == now and "id" in auction, auctions.json))
         self.assertTrue(len(results) == 1)
 
         #Test that the image from Mona Lisa can be retrieved
