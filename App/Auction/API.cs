@@ -31,6 +31,14 @@ namespace Auction
             return answer;
         }
 
+        public static async Task<JArray> getAuctions()
+        {
+           var response = await getRequest("/auctions");
+           var responseString = await response.Content.ReadAsStringAsync();
+           JArray json = JArray.Parse(responseString);
+           return json;
+        }
+
         public static async Task<JObject> postRequest(Dictionary<string, string> param, String path) 
         {
             JObject json = new JObject();
@@ -48,7 +56,21 @@ namespace Auction
             json = JObject.Parse(responseString);
             return json;
         }
-       
+
+        public static async Task<HttpResponseMessage> getRequest(String path)
+        {
+            JObject json = new JObject();
+            HttpClient httpClient = new HttpClient();
+            Uri uri = new Uri(API_URL + path);
+
+            httpClient.DefaultRequestHeaders.Accept.TryParseAdd("application/json");
+            var response = await httpClient.GetAsync(uri);
+            if (response.StatusCode == HttpStatusCode.BadRequest)
+            {
+                throw new Exception("404");
+            }
+            return response;
+        }
 
     }
 }

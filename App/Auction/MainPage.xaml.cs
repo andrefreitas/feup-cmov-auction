@@ -32,7 +32,7 @@ namespace Auction
             this.NavigationCacheMode = NavigationCacheMode.Required;
             if (ApplicationData.Current.LocalSettings.Values.ContainsKey("id"))
             {
-                Frame.Navigate(typeof(HomePage));
+                //Frame.Navigate(typeof(HomePage));
             }
         }
 
