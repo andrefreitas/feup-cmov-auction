@@ -7,90 +7,90 @@
     <SolutionConfiguration>Release|AnyCPU</SolutionConfiguration>
     <PackageArchitecture>neutral</PackageArchitecture>
     <PackageIdentityName>07342c55-a6fb-4f05-b9be-94001b8d0e9a</PackageIdentityName>
-    <IntermediateOutputPath>C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\obj\Release\</IntermediateOutputPath>
+    <IntermediateOutputPath>C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Release\</IntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Bin\Release\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Release\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Bin\Release\Auction.dll">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Release\Auction.dll">
       <PackagePath>Auction.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\packages\Newtonsoft.Json.6.0.6\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Newtonsoft.Json.6.0.6\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.dll">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.dll">
       <PackagePath>System.Net.Http.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.Extensions.dll">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.Extensions.dll">
       <PackagePath>System.Net.Http.Extensions.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.Primitives.dll">
       <PackagePath>System.Net.Http.Primitives.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\packages\Newtonsoft.Json.6.0.6\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.xml">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Newtonsoft.Json.6.0.6\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.xml">
       <PackagePath>Newtonsoft.Json.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.xml">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.xml">
       <PackagePath>System.Net.Http.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.Extensions.xml">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.Extensions.xml">
       <PackagePath>System.Net.Http.Extensions.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.Primitives.xml">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.Primitives.xml">
       <PackagePath>System.Net.Http.Primitives.xml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Assets\AlignmentGrid.png">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\AlignmentGrid.png">
       <PackagePath>Assets\AlignmentGrid.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Assets\ApplicationIcon.png">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\ApplicationIcon.png">
       <PackagePath>Assets\ApplicationIcon.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Assets\BadgeLogo.png">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\BadgeLogo.png">
       <PackagePath>Assets\BadgeLogo.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Assets\Logo.png">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\Logo.png">
       <PackagePath>Assets\Logo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Assets\SplashScreen.png">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\SplashScreen.png">
       <PackagePath>Assets\SplashScreen.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Assets\SquareTile150x150.png">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\SquareTile150x150.png">
       <PackagePath>Assets\SquareTile150x150.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Assets\SquareTile71x71.png">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\SquareTile71x71.png">
       <PackagePath>Assets\SquareTile71x71.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Assets\WideLogo.png">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\WideLogo.png">
       <PackagePath>Assets\WideLogo.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Assets\Tiles\FlipCycleTileLarge.png">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\Tiles\FlipCycleTileLarge.png">
       <PackagePath>Assets\Tiles\FlipCycleTileLarge.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Assets\Tiles\FlipCycleTileMedium.png">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\Tiles\FlipCycleTileMedium.png">
       <PackagePath>Assets\Tiles\FlipCycleTileMedium.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Assets\Tiles\FlipCycleTileSmall.png">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\Tiles\FlipCycleTileSmall.png">
       <PackagePath>Assets\Tiles\FlipCycleTileSmall.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Assets\Tiles\IconicTileMediumLarge.png">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\Tiles\IconicTileMediumLarge.png">
       <PackagePath>Assets\Tiles\IconicTileMediumLarge.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Assets\Tiles\IconicTileSmall.png">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\Tiles\IconicTileSmall.png">
       <PackagePath>Assets\Tiles\IconicTileSmall.png</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\Visual Studio 2013\Projects\Auction\Auction\Bin\Release\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Release\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>
