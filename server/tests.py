@@ -200,7 +200,7 @@ class TestApi(unittest.TestCase):
         answer = self.app.post("/api/subscribe", params=subs_doc)
         self.assertEqual(answer.status_int, 200)
         doc = {"auction_id": auction_id}
-        self.assertTrue(doc in answer.json["auctions"])
+        self.assertTrue(auction_id in answer.json["auctions"])
 
 
 if __name__ == '__main__':

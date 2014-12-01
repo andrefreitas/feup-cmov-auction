@@ -113,11 +113,11 @@ class DataBase:
         customer = self.db.customers.find_one(ObjectId(customer_id))
         auction = self.db.auctions.find_one(ObjectId(auction_id))
         if customer and auction:
-            auction_doc ={
-                "auction_id": auction_id
-            }
-            self.db.customers.update({"_id": ObjectId(customer_id)}, {"$push": {"auctions": auction_doc}}, True)
-            cust = self.db.customers.find_one(ObjectId(customer_id))
-            return cust
+            self.db.customers.update({"_id": ObjectId(customer_id)}, {"$push": {"auctions": auction_id}}, True)
+            user = self.db.customers.find_one(ObjectId(customer_id))
+            return user
         else:
             return False
+
+    def send_notification(self, auction_id, bid_value):
+        customers = self.db.customers.find()
