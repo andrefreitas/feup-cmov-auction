@@ -1,5 +1,6 @@
 from pymongo import MongoClient, errors
 from bson.objectid import ObjectId
+import requests
 import helpers
 import gridfs
 import datetime
@@ -109,11 +110,12 @@ class DataBase:
             return False
 
 
-    def subscribe(self, auction_id, customer_id):
+    def subscribe(self, auction_id, customer_id, channelURI):
         customer = self.db.customers.find_one(ObjectId(customer_id))
         auction = self.db.auctions.find_one(ObjectId(auction_id))
         if customer and auction:
-            self.db.customers.update({"_id": ObjectId(customer_id)}, {"$push": {"auctions": auction_id}}, True)
+            self.db.customers.update({"_id": ObjectId(customer_id)}, {"$set": {"auction": auction_id}}, True)
+            self.db.customers.update({"_id": ObjectId(customer_id)}, {"$set": {"channelURI": channelURI}}, True)
             user = self.db.customers.find_one(ObjectId(customer_id))
             return user
         else:
@@ -121,3 +123,44 @@ class DataBase:
 
     def send_notification(self, auction_id, bid_value):
         customers = self.db.customers.find()
+
+        requests.post()
+        # Create the toast message.
+        toastMessage = ("<?xml version=\"1.0\" encoding=\"utf-8\"?>"
+        "<wp:Notification xmlns:wp=\"WPNotification\">"
+           "<wp:Toast>"
+                "<wp:Text1>Auction</wp:Text1>"
+                "<wp:Text2>Nova proposta no valor de:" + str(bid_value) + "</wp:Text2>"
+           "</wp:Toast> "
+        "</wp:Notification>")
+
+        """HttpWebRequest sendNotificationRequest = (HttpWebRequest)WebRequest.Create(subscriptionUri);
+
+                // Create an HTTPWebRequest that posts the toast notification to the Microsoft Push Notification Service.
+                // HTTP POST is the only method allowed to send the notification.
+                sendNotificationRequest.Method = "POST";
+
+                // The optional custom header X-MessageID uniquely identifies a notification message.
+                // If it is present, the same value is returned in the notification response. It must be a string that contains a UUID.
+                // sendNotificationRequest.Headers.Add("X-MessageID", "<UUID>");
+
+                // Set the notification payload to send.
+                byte[] notificationMessage = Encoding.Default.GetBytes(toastMessage);
+
+                // Set the web request content length.
+                sendNotificationRequest.ContentLength = notificationMessage.Length;
+                sendNotificationRequest.ContentType = "text/xml";
+                sendNotificationRequest.Headers.Add("X-WindowsPhone-Target", "toast");
+                sendNotificationRequest.Headers.Add("X-NotificationClass", "2");
+
+
+                using (Stream requestStream = sendNotificationRequest.GetRequestStream())
+                {
+                    requestStream.Write(notificationMessage, 0, notificationMessage.Length);
+                }
+
+                // Send the notification and get the response.
+                HttpWebResponse response = (HttpWebResponse)sendNotificationRequest.GetResponse();
+                string notificationStatus = response.Headers["X-NotificationStatus"];
+                string notificationChannelStatus = response.Headers["X-SubcriptionStatus"];
+                string deviceConnectionStatus = response.Headers["X-DeviceConnectionStatus"];"""

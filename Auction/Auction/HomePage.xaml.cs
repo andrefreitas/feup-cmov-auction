@@ -11,11 +11,15 @@ using Newtonsoft.Json.Linq;
 using Microsoft.Phone.Notification;
 using System.Windows.Media.Imaging;
 using System.Text;
+using Windows.Storage;
 
 namespace Auction
 {
     public partial class HomePage : PhoneApplicationPage
     {
+        private string customerID;
+        private string auctionID;
+
         public HomePage()
         {
             InitializeComponent();
@@ -33,6 +37,7 @@ namespace Auction
                 String photoID = (String)auction["photo_id"];
                 int minimumBid = (int)auction["minimum_bid"];
                 JArray bids = (JArray)auction["bids"];
+                auctionID = (String)auction["id"];
 
                 nameTextBlock.Text = name;
                 minimumBidTextBlock.Text = "Mínimo: " + minimumBid.ToString() + "€";
@@ -51,13 +56,13 @@ namespace Auction
         }
 
 
-        private void subscribeButton_Click(object sender, RoutedEventArgs e)
+        private async void subscribeButton_Click(object sender, RoutedEventArgs e)
         {
             /// Holds the push channel that is created or found.
             HttpNotificationChannel pushChannel;
 
             // The name of our push channel.
-            string channelName = "ToastSampleChannel";
+            string channelName = "ToastAuctionChannel";
 
             // Try to find the push channel.
             pushChannel = HttpNotificationChannel.Find(channelName);
@@ -94,6 +99,27 @@ namespace Auction
                 MessageBox.Show(String.Format("Channel Uri is {0}",
                     pushChannel.ChannelUri.ToString()));
 
+                String customerID = (String)ApplicationData.Current.LocalSettings.Values["id"];
+
+                try
+                {
+                    JObject json = await API.subscribe(auctionID, customerID, pushChannel.ChannelUri.ToString());
+                    this.NavigationService.Navigate(new Uri("/BidPage.xaml", UriKind.Relative));
+                }
+                catch (Exception ex)
+                {
+                    String msg = ex.Message;
+                    if (msg == "404")
+                    {
+                        MessageBox.Show("Códigos de ID inválidos!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sem ligação à Internet");
+                    }
+
+                }
+
             }
         }
 
@@ -102,7 +128,7 @@ namespace Auction
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        void PushChannel_ChannelUriUpdated(object sender, NotificationChannelUriEventArgs e)
+        private async void PushChannel_ChannelUriUpdated(object sender, NotificationChannelUriEventArgs e)
         {
 
             Dispatcher.BeginInvoke(() =>
@@ -110,9 +136,30 @@ namespace Auction
                 // Display the new URI for testing purposes.   Normally, the URI would be passed back to your web service at this point.
                 System.Diagnostics.Debug.WriteLine(e.ChannelUri.ToString());
                 MessageBox.Show(String.Format("Channel Uri is {0}",
-                    e.ChannelUri.ToString()));
+                    e.ChannelUri.ToString()));              
 
             });
+
+            String customerID = (String)ApplicationData.Current.LocalSettings.Values["id"];
+
+            try
+            {
+                JObject json = await API.subscribe(auctionID, customerID, e.ChannelUri.ToString());
+                this.NavigationService.Navigate(new Uri("/BidPage.xaml", UriKind.Relative));
+            }
+            catch (Exception ex)
+            {
+                String msg = ex.Message;
+                if (msg == "404")
+                {
+                    MessageBox.Show("Códigos de ID inválidos!");
+                }
+                else
+                {
+                    MessageBox.Show("Sem ligação à Internet");
+                }
+
+            }
         }
 
         /// <summary>

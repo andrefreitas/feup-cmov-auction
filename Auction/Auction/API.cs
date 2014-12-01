@@ -40,6 +40,16 @@ namespace Auction
             return json;
         }
 
+        public static async Task<JObject> subscribe(string auctionID, string customerID, string channelURI)
+        {
+            var values = new Dictionary<string, string>();
+            values.Add("customerID", customerID);
+            values.Add("auctionID", auctionID);
+            values.Add("channelURI", channelURI);
+            JObject answer = await postRequest(values, "/subscribe");
+            return answer;
+        }
+
         public static async Task<JObject> postRequest(Dictionary<string, string> param, String path)
         {
             JObject json = new JObject();

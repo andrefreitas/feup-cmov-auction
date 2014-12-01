@@ -194,13 +194,14 @@ class TestApi(unittest.TestCase):
 
         subs_doc = {
             "auctionID": auction_id,
-            "customerID": self.customer1_id
+            "customerID": self.customer1_id,
+            "channelURI": "http://teste.com"
         }
 
         answer = self.app.post("/api/subscribe", params=subs_doc)
         self.assertEqual(answer.status_int, 200)
-        doc = {"auction_id": auction_id}
-        self.assertTrue(auction_id in answer.json["auctions"])
+        self.assertTrue(auction_id in answer.json["auction"])
+        self.assertTrue("http://teste.com" in answer.json["channelURI"])
 
 
 if __name__ == '__main__':

@@ -77,7 +77,8 @@ def subscribe():
     response.content_type = 'application/json'
     auctionID = request.params.get("auctionID")
     customerID = request.params.get("customerID")
-    answer = db.subscribe(auctionID, customerID)
+    channelURI = request.params.get("channelURI")
+    answer = db.subscribe(auctionID, customerID, channelURI)
     if answer is False:
         response.status = 400
     else:
