@@ -14,10 +14,10 @@
     shell:SystemTray.IsVisible="True">
 
     <Grid>
-        <Image x:Name="pictureImage" HorizontalAlignment="Left" Height="265" Margin="44,37,0,0" VerticalAlignment="Top" Width="315"/>
-        <Button x:Name="subscribeButton" Content="Subscrever" HorizontalAlignment="Left" Height="67" Margin="44,410,0,0" VerticalAlignment="Top" Width="315" Click="subscribeButton_Click"/>
-        <TextBlock x:Name="nameTextBlock" HorizontalAlignment="Left" Margin="44,327,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="315" TextAlignment="Center"/>
-        <TextBlock x:Name="minimumBidTextBlock" HorizontalAlignment="Left" Margin="44,370,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="315" TextAlignment="Center"/>
+        <Image x:Name="pictureImage" HorizontalAlignment="Left" Height="400" Margin="44,37,0,0" VerticalAlignment="Top" Width="400"/>
+        <Button x:Name="subscribeButton" Content="Subscrever" HorizontalAlignment="Left" Height="67" Margin="44,491,0,0" VerticalAlignment="Top" Width="400" Click="subscribeButton_Click"/>
+        <TextBlock x:Name="nameTextBlock" HorizontalAlignment="Left" Margin="44,427,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="315" TextAlignment="Center"/>
+        <TextBlock x:Name="minimumBidTextBlock" HorizontalAlignment="Left" Margin="44,470,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="315" TextAlignment="Center"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

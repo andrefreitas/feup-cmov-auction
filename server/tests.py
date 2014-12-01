@@ -182,6 +182,26 @@ class TestApi(unittest.TestCase):
         answer = self.app.post("/api/endauctions", params=auction, expect_errors=True)
         self.assertEqual(answer.status_int, 400)
 
+    def test_subscribe(self):
+        photo = Upload('images/monalisa.jpeg')
+        auction_doc = {
+            "name": "Quadro Mona Lisa",
+            "minimum_bid": "4230",
+            "photo": photo
+        }
+        answer = self.app.post("/api/auctions", params=auction_doc)
+        auction_id = answer.json["id"]
+
+        subs_doc = {
+            "auctionID": auction_id,
+            "customerID": self.customer1_id
+        }
+
+        answer = self.app.post("/api/subscribe", params=subs_doc)
+        self.assertEqual(answer.status_int, 200)
+        doc = {"auction_id": auction_id}
+        self.assertTrue(doc in answer.json["auctions"])
+
 
 if __name__ == '__main__':
     unittest.main()

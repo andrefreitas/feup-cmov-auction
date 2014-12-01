@@ -107,3 +107,17 @@ class DataBase:
             return True
         else:
             return False
+
+
+    def subscribe(self, auction_id, customer_id):
+        customer = self.db.customers.find_one(ObjectId(customer_id))
+        auction = self.db.auctions.find_one(ObjectId(auction_id))
+        if customer and auction:
+            auction_doc ={
+                "auction_id": auction_id
+            }
+            self.db.customers.update({"_id": ObjectId(customer_id)}, {"$push": {"auctions": auction_doc}}, True)
+            cust = self.db.customers.find_one(ObjectId(customer_id))
+            return cust
+        else:
+            return False

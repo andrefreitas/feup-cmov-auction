@@ -72,6 +72,17 @@ def end_auction():
     else:
         response.status = 400
 
+@app.route("/api/subscribe", method="POST")
+def subscribe():
+    response.content_type = 'application/json'
+    auctionID = request.params.get("auctionID")
+    customerID = request.params.get("customerID")
+    answer = db.subscribe(auctionID, customerID)
+    if answer is False:
+        response.status = 400
+    else:
+        response.status = 200
+        return dumps(answer)
 
 if __name__ == '__main__':
     run(app, host='localhost', port=8082, reloader=True, server='cherrypy')
