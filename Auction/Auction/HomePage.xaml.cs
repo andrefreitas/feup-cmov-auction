@@ -131,35 +131,37 @@ namespace Auction
         private async void PushChannel_ChannelUriUpdated(object sender, NotificationChannelUriEventArgs e)
         {
 
-            Dispatcher.BeginInvoke(() =>
+            Dispatcher.BeginInvoke(async () =>
             {
                 // Display the new URI for testing purposes.   Normally, the URI would be passed back to your web service at this point.
                 System.Diagnostics.Debug.WriteLine(e.ChannelUri.ToString());
                 MessageBox.Show(String.Format("Channel Uri is {0}",
-                    e.ChannelUri.ToString()));              
+                    e.ChannelUri.ToString()));
+
+                String customerID = (String)ApplicationData.Current.LocalSettings.Values["id"];
+
+                try
+                {
+                    JObject json = await API.subscribe(auctionID, customerID, e.ChannelUri.ToString());
+                    this.NavigationService.Navigate(new Uri("/BidPage.xaml", UriKind.Relative));
+                }
+                catch (Exception ex)
+                {
+                    String msg = ex.Message;
+                    if (msg == "404")
+                    {
+                        MessageBox.Show("Códigos de ID inválidos!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Sem ligação à Internet");
+                    }
+
+                }
 
             });
 
-            String customerID = (String)ApplicationData.Current.LocalSettings.Values["id"];
-
-            try
-            {
-                JObject json = await API.subscribe(auctionID, customerID, e.ChannelUri.ToString());
-                this.NavigationService.Navigate(new Uri("/BidPage.xaml", UriKind.Relative));
-            }
-            catch (Exception ex)
-            {
-                String msg = ex.Message;
-                if (msg == "404")
-                {
-                    MessageBox.Show("Códigos de ID inválidos!");
-                }
-                else
-                {
-                    MessageBox.Show("Sem ligação à Internet");
-                }
-
-            }
+            
         }
 
         /// <summary>
