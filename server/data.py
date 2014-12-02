@@ -116,7 +116,7 @@ class DataBase:
             self.db.customers.update({"_id": ObjectId(customer_id)}, {"$set": {"auction": auction_id}}, True)
             self.db.customers.update({"_id": ObjectId(customer_id)}, {"$set": {"channelURI": channelURI}}, True)
             user = self.db.customers.find_one(ObjectId(customer_id))
-            self.send_notification(self, customer_id, auction_id, 2121)
+            self.send_notification(customer_id, auction_id, 2121)
             return user
         else:
             return False

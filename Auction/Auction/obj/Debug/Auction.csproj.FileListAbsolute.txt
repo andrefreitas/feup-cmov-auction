@@ -97,3 +97,11 @@ C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\MDILPr
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\XapCacheFile.xml
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\BidPage.g.cs
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\Auction.csprojResolveAssemblyReference.cache
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\layout.resfiles
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\layout.resfiles.intermediate
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\Resources.resfiles
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\Resources.resfiles.intermediate
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\pri.resfiles
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\pri.resfiles.intermediate
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\priconfig.xml
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\priconfig.xml.intermediate
