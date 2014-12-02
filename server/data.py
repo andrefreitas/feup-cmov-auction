@@ -1,28 +1,9 @@
 from pymongo import MongoClient, errors
 from bson.objectid import ObjectId
-import requests
 import helpers
 import gridfs
 import datetime
-import urllib2
-import httplib
-
-CERT = "mega_cert.crt"
-URL =  "https://my-unthrottled-url.com"
-
-class HTTPSClientAuthHandler(urllib2.HTTPSHandler):
-    """Class to allow a certificate to be uploaded
-    by the client."""
-    def __init__(self, cert):
-        urllib2.HTTPSHandler.__init__(self)
-        self.cert = cert
-
-    def https_open(self, req):
-        return self.do_open(self.getConnection, req)
-
-    def getConnection(self, host, timeout=10):
-        return httplib.HTTPSConnection(host, cert_file=self.cert, timeout=timeout)
-
+import urllib
 
 class DataBase:
     def __init__(self, db_name):
@@ -135,22 +116,21 @@ class DataBase:
             self.db.customers.update({"_id": ObjectId(customer_id)}, {"$set": {"auction": auction_id}}, True)
             self.db.customers.update({"_id": ObjectId(customer_id)}, {"$set": {"channelURI": channelURI}}, True)
             user = self.db.customers.find_one(ObjectId(customer_id))
-            self.send_notification(self, auction_id, 2121)
+            self.send_notification(self, customer_id, auction_id, 2121)
             return user
         else:
             return False
 
-    def send_notification(self, auction_id, bid_value):
-        customers = self.db.customers.find()
-        opener = urllib2.build_opener(HTTPSClientAuthHandler(cert=CERT))
+    def send_notification(self, customer_id, auction_id, bid_value):
+        customer = self.db.customers.find_one(ObjectId(customer_id))
 
-        request = urllib2.Request(URL)
+        request = urllib.request.Request(customer["channelURI"])
         request.add_header("Content-Type", "text/xml")
         request.add_header("X-WindowsPhone-Target", "Toast")
         request.add_header("X-NotificationClass", "2")
         request.add_data("<?xml version='1.0' encoding='utf-8'?><wp:Notification xmlns:wp='WPNotification'><wp:Toast><wp:Text1>My title</wp:Text1><wp:Text2>My subtitle</wp:Text2></wp:Toast></wp:Notification>")
         request.method = lambda: "POST"
-        response = opener.open(request)
+        response = urllib.request.urlopen(request)
 
 
         # Create the toast message.
