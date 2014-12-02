@@ -195,13 +195,13 @@ class TestApi(unittest.TestCase):
         subs_doc = {
             "auctionID": auction_id,
             "customerID": self.customer1_id,
-            "channelURI": "http://teste.com"
+            "channelURI": "http://s.notify.live.net/u/1/db3/HmQAAAB7KCuAc5RHJDRsruvinfgOX9zZI5D-__qHSpAOP_fRTbbh_v4kaAlEJQRgA7voYbnfcdALLKYs8q99G_OT9QIb/d2luZG93c3Bob25lZGVmYXVsdA/VSw0B_umBU-5vpQAG40Omg/IJdMpgpBDrchPY9Fe_8vZEmDEoA"
         }
 
         answer = self.app.post("/api/subscribe", params=subs_doc)
         self.assertEqual(answer.status_int, 200)
         self.assertTrue(auction_id in answer.json["auction"])
-        self.assertTrue("http://teste.com" in answer.json["channelURI"])
+        self.assertTrue("http://s.notify.live.net/u/1/db3/HmQAAAB7KCuAc5RHJDRsruvinfgOX9zZI5D-__qHSpAOP_fRTbbh_v4kaAlEJQRgA7voYbnfcdALLKYs8q99G_OT9QIb/d2luZG93c3Bob25lZGVmYXVsdA/VSw0B_umBU-5vpQAG40Omg/IJdMpgpBDrchPY9Fe_8vZEmDEoA" in answer.json["channelURI"])
 
 
 if __name__ == '__main__':

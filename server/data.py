@@ -3,7 +3,8 @@ from bson.objectid import ObjectId
 import helpers
 import gridfs
 import datetime
-import urllib
+import requests
+from mpns import MPNSToast, MPNSTile
 
 class DataBase:
     def __init__(self, db_name):
@@ -124,51 +125,10 @@ class DataBase:
     def send_notification(self, customer_id, auction_id, bid_value):
         customer = self.db.customers.find_one(ObjectId(customer_id))
 
-        request = urllib.request.Request(customer["channelURI"])
-        request.add_header("Content-Type", "text/xml")
-        request.add_header("X-WindowsPhone-Target", "Toast")
-        request.add_header("X-NotificationClass", "2")
-        request.add_data("<?xml version='1.0' encoding='utf-8'?><wp:Notification xmlns:wp='WPNotification'><wp:Toast><wp:Text1>My title</wp:Text1><wp:Text2>My subtitle</wp:Text2></wp:Toast></wp:Notification>")
-        request.method = lambda: "POST"
-        response = urllib.request.urlopen(request)
+        toast = MPNSToast()
+        tile = MPNSTile()
 
+        toast.send(customer["channelURI"], {'text1': 'Nova oferta', 'text2': 'Com o valor 22232 eur'})
+        toast.send(customer["channelURI"], {'text1': 'Tap this message', 'text2': 'To open application'})
 
-        # Create the toast message.
-        toastMessage = ("<?xml version=\"1.0\" encoding=\"utf-8\"?>"
-        "<wp:Notification xmlns:wp=\"WPNotification\">"
-           "<wp:Toast>"
-                "<wp:Text1>Auction</wp:Text1>"
-                "<wp:Text2>Nova proposta no valor de:" + str(bid_value) + "</wp:Text2>"
-           "</wp:Toast> "
-        "</wp:Notification>")
-
-        """HttpWebRequest sendNotificationRequest = (HttpWebRequest)WebRequest.Create(subscriptionUri);
-
-                // Create an HTTPWebRequest that posts the toast notification to the Microsoft Push Notification Service.
-                // HTTP POST is the only method allowed to send the notification.
-                sendNotificationRequest.Method = "POST";
-
-                // The optional custom header X-MessageID uniquely identifies a notification message.
-                // If it is present, the same value is returned in the notification response. It must be a string that contains a UUID.
-                // sendNotificationRequest.Headers.Add("X-MessageID", "<UUID>");
-
-                // Set the notification payload to send.
-                byte[] notificationMessage = Encoding.Default.GetBytes(toastMessage);
-
-                // Set the web request content length.
-                sendNotificationRequest.ContentLength = notificationMessage.Length;
-                sendNotificationRequest.ContentType = "text/xml";
-                sendNotificationRequest.Headers.Add("X-WindowsPhone-Target", "toast");
-                sendNotificationRequest.Headers.Add("X-NotificationClass", "2");
-
-
-                using (Stream requestStream = sendNotificationRequest.GetRequestStream())
-                {
-                    requestStream.Write(notificationMessage, 0, notificationMessage.Length);
-                }
-
-                // Send the notification and get the response.
-                HttpWebResponse response = (HttpWebResponse)sendNotificationRequest.GetResponse();
-                string notificationStatus = response.Headers["X-NotificationStatus"];
-                string notificationChannelStatus = response.Headers["X-SubcriptionStatus"];
-                string deviceConnectionStatus = response.Headers["X-DeviceConnectionStatus"];"""
+        tile.send(customer["channelURI"], {'title': 'Tile title'})
