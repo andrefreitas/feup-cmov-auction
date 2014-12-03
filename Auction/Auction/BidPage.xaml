@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="Auction.PivotPage1"
+    x:Class="Auction.BidPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:sparrow="clr-namespace:Sparrow.Chart;assembly=Sparrow.Chart.WP8.45"
@@ -7,7 +7,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:local="clr-namespace:Auction"
+    xmlns:local="clr-namespace:Auction.ViewModels"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -26,9 +26,9 @@
 
             <!--Pivot item two-->
             <phone:PivotItem Header="gráfico">
-                <!--<sparrow:SparrowChart>
+                <sparrow:SparrowChart>
                     <sparrow:SparrowChart.DataContext>
-                        <local:ViewModel/>
+                        <local:ViewModelChart/>
                     </sparrow:SparrowChart.DataContext>
                     <sparrow:SparrowChart.XAxis>
                         <sparrow:LinearXAxis/>
@@ -37,7 +37,7 @@
                         <sparrow:LinearYAxis/>
                     </sparrow:SparrowChart.YAxis>
                     <sparrow:LineSeries PointsSource="{Binding Collection, Mode=OneTime}" XPath="X" YPath="Y"/>
-                </sparrow:SparrowChart>-->
+                </sparrow:SparrowChart>
             </phone:PivotItem>
         </phone:Pivot>
     </Grid>

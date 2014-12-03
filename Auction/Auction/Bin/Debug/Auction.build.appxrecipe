@@ -19,8 +19,14 @@
     <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\Auction.dll">
       <PackagePath>Auction.dll</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Phone\v8.1\Libraries\Microsoft.Phone.Controls.dll">
+      <PackagePath>Microsoft.Phone.Controls.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Newtonsoft.Json.6.0.6\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Sparrow.Chart.WP8.13.1.0.113\lib\windowsphone8\Sparrow.Chart.WP8.45.dll">
+      <PackagePath>Sparrow.Chart.WP8.45.dll</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.dll">
       <PackagePath>System.Net.Http.dll</PackagePath>
@@ -33,6 +39,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Newtonsoft.Json.6.0.6\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.xml">
       <PackagePath>Newtonsoft.Json.xml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Sparrow.Chart.WP8.13.1.0.113\lib\windowsphone8\Sparrow.Chart.WP8.45.xml">
+      <PackagePath>Sparrow.Chart.WP8.45.xml</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.xml">
       <PackagePath>System.Net.Http.xml</PackagePath>
