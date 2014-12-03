@@ -83,6 +83,7 @@ class DataBase:
                     }
 
                     self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$push": {"bids": bid_doc}}, True)
+                    self.send_notification(auction_id, float(value))
                     return True
                 else:
                     return False
@@ -95,6 +96,7 @@ class DataBase:
                     }
 
                     self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$push": {"bids": bid_doc}}, True)
+                    self.send_notification(auction_id, float(value))
                     return True
                 else:
                     return False
@@ -117,18 +119,15 @@ class DataBase:
             self.db.customers.update({"_id": ObjectId(customer_id)}, {"$set": {"auction": auction_id}}, True)
             self.db.customers.update({"_id": ObjectId(customer_id)}, {"$set": {"channelURI": channelURI}}, True)
             user = self.db.customers.find_one(ObjectId(customer_id))
-            self.send_notification(customer_id, auction_id, 2121)
             return user
         else:
             return False
 
-    def send_notification(self, customer_id, auction_id, bid_value):
-        customer = self.db.customers.find_one(ObjectId(customer_id))
+    def send_notification(self, auction_id, bid_value):
+        customers = self.db.customers.find({"auction": auction_id})
 
-        toast = MPNSToast()
-        tile = MPNSTile()
-
-        toast.send(customer["channelURI"], {'text1': 'Nova oferta', 'text2': 'Com o valor 22232 eur'})
-        toast.send(customer["channelURI"], {'text1': 'Tap this message', 'text2': 'To open application'})
-
-        tile.send(customer["channelURI"], {'title': 'Tile title'})
+        for doc in customers:
+            toast = MPNSToast()
+            tile = MPNSTile()
+            toast.send(doc["channelURI"], {'text1': 'Nova oferta', 'text2': 'Com o valor 22232 eur'})
+            tile.send(doc["channelURI"], {'title': 'Nova oferta no valor de ' + str(bid_value) + ' eur', 'background_image': 'https://cdn3.iconfinder.com/data/icons/meanicons-base/512/meanicons_64-512.png'})

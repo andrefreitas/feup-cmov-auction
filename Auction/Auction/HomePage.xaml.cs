@@ -94,11 +94,6 @@ namespace Auction
                 // Register for this notification only if you need to receive the notifications while your application is running.
                 pushChannel.ShellToastNotificationReceived += new EventHandler<NotificationEventArgs>(PushChannel_ShellToastNotificationReceived);
 
-                // Display the URI for testing purposes. Normally, the URI would be passed back to your web service at this point.
-                System.Diagnostics.Debug.WriteLine(pushChannel.ChannelUri.ToString());
-                MessageBox.Show(String.Format("Channel Uri is {0}",
-                    pushChannel.ChannelUri.ToString()));
-
                 String customerID = (String)ApplicationData.Current.LocalSettings.Values["id"];
 
                 try
@@ -133,10 +128,6 @@ namespace Auction
 
             Dispatcher.BeginInvoke(async () =>
             {
-                // Display the new URI for testing purposes.   Normally, the URI would be passed back to your web service at this point.
-                System.Diagnostics.Debug.WriteLine(e.ChannelUri.ToString());
-                MessageBox.Show(String.Format("Channel Uri is {0}",
-                    e.ChannelUri.ToString()));
 
                 String customerID = (String)ApplicationData.Current.LocalSettings.Values["id"];
 
