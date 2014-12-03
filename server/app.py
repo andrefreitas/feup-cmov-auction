@@ -41,6 +41,8 @@ def create_bid():
         response.status = 400
     else:
         response.status = 200
+        return {"status": "ok"}
+
 
 @app.route("/api/auctions", method="POST")
 def create_auction():

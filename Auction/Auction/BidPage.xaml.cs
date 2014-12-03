@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
@@ -11,20 +12,20 @@ using System.Collections.ObjectModel;
 using Auction.ViewModels;
 using Newtonsoft.Json.Linq;
 using System.Windows.Media.Imaging;
+using Windows.Storage;
+
 
 namespace Auction
 {
     public partial class BidPage : PhoneApplicationPage
     {
+
+        private String auctionID;
+
         public BidPage()
         {
             InitializeComponent();
             loadActiveAuction();
-        }
-
-        private void Bid_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
 
         public async void loadActiveAuction()
@@ -37,6 +38,7 @@ namespace Auction
                 String date = (String)auction["date"];
                 String photoID = (String)auction["photo_id"];
                 int minimumBid = (int)auction["minimum_bid"];
+                auctionID = (String)auction["id"];
 
                 nameTextBlock.Text = name;
                 minimumBidTextBlock.Text = "Mínimo: " + minimumBid.ToString() + "€";
@@ -51,12 +53,20 @@ namespace Auction
             {
                 MessageBox.Show("Sem ligação à Internet");
             }
-
         }
 
-        public void bidButton_Click(object sender, RoutedEventArgs e)
+        public async void bidButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                String customerID = (String)ApplicationData.Current.LocalSettings.Values["id"];
+                String value = bidTextBox.Text;
+                JObject bid = await API.bid(auctionID, customerID, value);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Sem ligação à Internet");
+            }
         }
     }
 

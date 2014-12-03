@@ -50,6 +50,16 @@ namespace Auction
             return answer;
         }
 
+        public static async Task<JObject> bid(string auctionID, string customerID, string value)
+        {
+            var values = new Dictionary<string, string>();
+            values.Add("customerID", customerID);
+            values.Add("auctionID", auctionID);
+            values.Add("value", value);
+            JObject answer = await postRequest(values, "/bid");
+            return answer;
+        }
+
         public static async Task<JObject> postRequest(Dictionary<string, string> param, String path)
         {
             JObject json = new JObject();

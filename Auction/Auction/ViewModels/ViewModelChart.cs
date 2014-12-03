@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Auction.Models;
+using System.Net;
+using System.Net.Http;
 using Newtonsoft.Json.Linq;
 
 namespace Auction.ViewModels

@@ -17,7 +17,6 @@ namespace Auction
 {
     public partial class HomePage : PhoneApplicationPage
     {
-        private string customerID;
         private string auctionID;
 
         public HomePage()
@@ -123,7 +122,7 @@ namespace Auction
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void PushChannel_ChannelUriUpdated(object sender, NotificationChannelUriEventArgs e)
+        private void PushChannel_ChannelUriUpdated(object sender, NotificationChannelUriEventArgs e)
         {
 
             Dispatcher.BeginInvoke(async () =>
