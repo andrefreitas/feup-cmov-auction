@@ -21,7 +21,16 @@
         <phone:Pivot Title="Leilão">
             <!--Pivot item one-->
             <phone:PivotItem Header="quadro">
-                <Grid/>
+                <Grid>
+                    <Image x:Name="pictureImage" HorizontalAlignment="Center" Height="300" Margin="28,0" VerticalAlignment="Top" Width="300"/>
+                    <Button x:Name="bidButton" Content="Fazer oferta" HorizontalAlignment="Left" Height="67" Margin="44,511,0,0" VerticalAlignment="Top" Width="400" Click="bidButton_Click"/>
+                    <TextBlock x:Name="nameTextBlock" HorizontalAlignment="Left" Margin="44,326,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="400" TextAlignment="Center"/>
+                    <TextBlock x:Name="minimumBidTextBlock" HorizontalAlignment="Left" Margin="44,365,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="141" TextAlignment="Center"/>
+                    <TextBlock x:Name="lastBidTextBlock" HorizontalAlignment="Right" Margin="0,365,30,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Width="159" TextAlignment="Center"/>
+                    <TextBox InputScope="Digits" HorizontalAlignment="Left" Height="72" Margin="157,434,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="269" TextChanged="Bid_TextChanged"/>
+                    <TextBlock HorizontalAlignment="Left" Margin="66,459,0,0" TextWrapping="Wrap" Text="Valor:" VerticalAlignment="Top" Height="38" Width="73"/>
+
+                </Grid>
             </phone:PivotItem>
 
             <!--Pivot item two-->
@@ -31,15 +40,15 @@
                         <local:ViewModelChart/>
                     </sparrow:SparrowChart.DataContext>
                     <sparrow:SparrowChart.XAxis>
-                        <sparrow:LinearXAxis/>
+                        <sparrow:LinearXAxis MinValue="0" MaxValue="100000"  Header="Oferta número" />
                     </sparrow:SparrowChart.XAxis>
                     <sparrow:SparrowChart.YAxis>
-                        <sparrow:LinearYAxis/>
+                        <sparrow:LinearYAxis MinValue="0" MaxValue="100000"  Header="Valor da oferta (eur)" />
                     </sparrow:SparrowChart.YAxis>
                     <sparrow:LineSeries PointsSource="{Binding Collection, Mode=OneTime}" XPath="X" YPath="Y"/>
                 </sparrow:SparrowChart>
             </phone:PivotItem>
         </phone:Pivot>
     </Grid>
-    
+
 </phone:PhoneApplicationPage>

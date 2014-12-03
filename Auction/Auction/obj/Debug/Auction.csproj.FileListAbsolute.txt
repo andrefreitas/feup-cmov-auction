@@ -72,7 +72,6 @@ C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\Sparro
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\System.Net.Http.xml
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\System.Net.Http.Extensions.xml
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\System.Net.Http.Primitives.xml
-C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\Auction.csprojResolveAssemblyReference.cache
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\App.g.cs
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\HomePage.g.cs
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\MainPage.g.cs
@@ -84,14 +83,6 @@ C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\Auctio
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\Auction.dll
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\Auction.pdb
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\en-US\System.Net.Http.SR.resw
-C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\layout.resfiles
-C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\layout.resfiles.intermediate
-C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\Resources.resfiles
-C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\Resources.resfiles.intermediate
-C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\pri.resfiles
-C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\pri.resfiles.intermediate
-C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\priconfig.xml
-C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\priconfig.xml.intermediate
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http.pri
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\qualifiers.txt
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\priconfig.xml
@@ -108,3 +99,12 @@ C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\Multip
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\ProjectArchitectures.txt
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\MDILProjectFiles.xml
 C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\XapCacheFile.xml
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\Auction.csprojResolveAssemblyReference.cache
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\layout.resfiles
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\layout.resfiles.intermediate
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\Resources.resfiles
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\Resources.resfiles.intermediate
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\pri.resfiles
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\pri.resfiles.intermediate
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\priconfig.xml
+C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\System.Net.Http\priconfig.xml.intermediate

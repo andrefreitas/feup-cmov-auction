@@ -25,7 +25,7 @@ def login():
     password = request.params.get("password")
     customer = db.login(email, password)
     if customer:
-        return {"id": str(customer["_id"])}
+        return {"id": str(customer["_id"]), "auction": str(customer["auction"])}
     else:
         response.status = 400
 

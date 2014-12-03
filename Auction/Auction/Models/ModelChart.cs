@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Auction.Models
 {
-    class ModelChart
+    public class ModelChart
     {
         public double X { get; set; }
         public double Y { get; set; }

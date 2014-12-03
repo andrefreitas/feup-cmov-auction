@@ -68,7 +68,10 @@ namespace Auction
                 JObject json = await API.login(email, password);
                 String id = (string)json["id"];
                 ApplicationData.Current.LocalSettings.Values["id"] = id;
-                this.NavigationService.Navigate(new Uri("/HomePage.xaml", UriKind.Relative));
+                if ((String)json["auction"] != "") {
+                    this.NavigationService.Navigate(new Uri("/BidPage.xaml", UriKind.Relative));
+                }
+                else this.NavigationService.Navigate(new Uri("/HomePage.xaml", UriKind.Relative));
             }
             catch (Exception ex)
             {

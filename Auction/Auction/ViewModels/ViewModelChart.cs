@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Auction.Models;
+using Newtonsoft.Json.Linq;
 
 namespace Auction.ViewModels
 {
-    class ViewModelChart
+    public class ViewModelChart
     {
         public ObservableCollection<ModelChart> Collection { get; set; }
         public ViewModelChart()
@@ -16,12 +17,24 @@ namespace Auction.ViewModels
             Collection = new ObservableCollection<ModelChart>();
             GenerateDatas();
         }
-        private void GenerateDatas()
+        private async void GenerateDatas()
         {
-            this.Collection.Add(new ModelChart(0, 1));
-            this.Collection.Add(new ModelChart(1, 2));
-            this.Collection.Add(new ModelChart(2, 3));
-            this.Collection.Add(new ModelChart(3, 4));
+            JArray auctions = await API.getAuctions();
+            JObject auction = (JObject)auctions.Where(a => (String)a["state"] == "open").First();
+            int minimumBid = (int)auction["minimum_bid"];
+            JArray bids = (JArray)auction["bids"];
+
+            this.Collection.Add(new ModelChart(0, minimumBid));
+
+            if (bids.Count > 0)
+            {
+                for (int i = 0; i < bids.Count; i++)
+                {
+                    this.Collection.Add(new ModelChart(i + 1, (int)bids[i]));
+                }
+                    
+            }
+            
         }
     }
 }

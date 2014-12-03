@@ -23,7 +23,8 @@ class DataBase:
         customer_doc = {
             "name": name,
             "email": email,
-            "password": encrypted_password
+            "password": encrypted_password,
+            "auction": ""
         }
         try:
             result = self.db.customers.insert(customer_doc)
@@ -106,6 +107,7 @@ class DataBase:
     def end_auction(self, auction_id):
         auction = self.db.auctions.find_one(ObjectId(auction_id))
         if auction:
+            self.db.customers.update({"auction": ObjectId(auction_id)}, {"$set": {"auction": ""}})
             self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$set": {"state": "finished"}})
             return True
         else:
@@ -129,5 +131,5 @@ class DataBase:
         for doc in customers:
             toast = MPNSToast()
             tile = MPNSTile()
-            toast.send(doc["channelURI"], {'text1': 'Nova oferta', 'text2': 'Com o valor 22232 eur'})
+            toast.send(doc["channelURI"], {'text1': 'Nova oferta', 'text2': 'Com o valor ' + str(bid_value) + ' eur'})
             tile.send(doc["channelURI"], {'title': 'Nova oferta no valor de ' + str(bid_value) + ' eur', 'background_image': 'https://cdn3.iconfinder.com/data/icons/meanicons-base/512/meanicons_64-512.png'})
