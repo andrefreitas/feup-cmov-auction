@@ -35,15 +35,15 @@
 
             <!--Pivot item two-->
             <phone:PivotItem Header="gráfico">
-                <sparrow:SparrowChart>
+                <sparrow:SparrowChart x:Name="chart">
                     <sparrow:SparrowChart.XAxis>
-                        <sparrow:LinearXAxis MinValue="0" MaxValue="100000"  Header="Oferta número" />
+                        <sparrow:LinearXAxis />
                     </sparrow:SparrowChart.XAxis>
                     <sparrow:SparrowChart.YAxis>
-                        <sparrow:LinearYAxis MinValue="0" MaxValue="100000"  Header="Valor da oferta (eur)" />
+                        <sparrow:LinearYAxis />
                     </sparrow:SparrowChart.YAxis>
-                    <sparrow:LineSeries PointsSource="{Binding Collection, Mode=OneWay}" XPath="X" YPath="Y"/>
-                </sparrow:SparrowChart>
+                    <sparrow:LineSeries PointsSource="{Binding ViewModelChart, Mode=OneWay}" XPath="X" YPath="Y"/>
+                </sparrow:SparrowChart> 
             </phone:PivotItem>
         </phone:Pivot>
     </Grid>

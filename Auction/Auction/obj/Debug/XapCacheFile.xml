@@ -1,6 +1,6 @@
-﻿<xapCache source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\Auction_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="03/12/2014 19:04:49">
-  <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\resources.pri" archivePath="resources.pri" lastWriteTime="03/12/2014 19:04:48" />
-  <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\Auction.dll" archivePath="Auction.dll" lastWriteTime="03/12/2014 19:04:47" />
+﻿<xapCache source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\Auction_Debug_AnyCPU.xap" wasSigned="False" wasTritonized="False" certificateThumbprint="" TimeStampUrl="" signKeyFile="" signKeyPassword="" lastWriteTime="05/12/2014 15:10:22">
+  <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\resources.pri" archivePath="resources.pri" lastWriteTime="05/12/2014 15:10:21" />
+  <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\Auction.dll" archivePath="Auction.dll" lastWriteTime="05/12/2014 15:10:21" />
   <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\AlignmentGrid.png" archivePath="Assets\AlignmentGrid.png" lastWriteTime="29/11/2014 18:47:30" />
   <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\BadgeLogo.png" archivePath="Assets\BadgeLogo.png" lastWriteTime="29/11/2014 18:47:30" />
   <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\Logo.png" archivePath="Assets\Logo.png" lastWriteTime="29/11/2014 18:47:30" />
@@ -13,7 +13,7 @@
   <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\Tiles\FlipCycleTileSmall.png" archivePath="Assets\Tiles\FlipCycleTileSmall.png" lastWriteTime="29/11/2014 18:47:30" />
   <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\Tiles\IconicTileMediumLarge.png" archivePath="Assets\Tiles\IconicTileMediumLarge.png" lastWriteTime="29/11/2014 18:47:30" />
   <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Assets\Tiles\IconicTileSmall.png" archivePath="Assets\Tiles\IconicTileSmall.png" lastWriteTime="29/11/2014 18:47:30" />
-  <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="03/12/2014 18:53:15" />
+  <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\AppManifest.xaml" archivePath="AppManifest.xaml" lastWriteTime="05/12/2014 13:41:12" />
   <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\Assets\ApplicationIcon.png" archivePath="Assets\ApplicationIcon.png" lastWriteTime="29/11/2014 18:47:30" />
   <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\Assets\Tiles\FlipCycleTileMedium.png" archivePath="Assets\Tiles\FlipCycleTileMedium.png" lastWriteTime="29/11/2014 18:47:30" />
   <file source="C:\Program Files (x86)\Microsoft SDKs\Windows Phone\v8.1\Libraries\Microsoft.Phone.Controls.dll" archivePath="Microsoft.Phone.Controls.dll" lastWriteTime="18/04/2014 05:36:48" />
@@ -27,7 +27,7 @@
   <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.xml" archivePath="System.Net.Http.xml" lastWriteTime="29/11/2014 21:55:03" />
   <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.Extensions.xml" archivePath="System.Net.Http.Extensions.xml" lastWriteTime="29/11/2014 21:55:03" />
   <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\packages\Microsoft.Net.Http.2.2.28\lib\sl4-windowsphone71\System.Net.Http.Primitives.xml" archivePath="System.Net.Http.Primitives.xml" lastWriteTime="29/11/2014 21:55:03" />
-  <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="03/12/2014 18:53:16" />
-  <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\MDILProjectFiles.xml" archivePath="MDILProjectFiles.xml" lastWriteTime="03/12/2014 19:04:49" />
-  <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\AppxManifest.xml" archivePath="AppxManifest.xml" lastWriteTime="03/12/2014 19:04:48" />
+  <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\Properties\WMAppManifest.xml" archivePath="WMAppManifest.xml" lastWriteTime="05/12/2014 13:41:13" />
+  <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\obj\Debug\MDILProjectFiles.xml" archivePath="MDILProjectFiles.xml" lastWriteTime="05/12/2014 15:10:22" />
+  <file source="C:\Users\Ana  Gomes\Documents\feup-cmov-auction\Auction\Auction\Bin\Debug\AppxManifest.xml" archivePath="AppxManifest.xml" lastWriteTime="05/12/2014 13:42:46" />
 </xapCache>
