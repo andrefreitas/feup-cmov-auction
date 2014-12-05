@@ -24,6 +24,7 @@ namespace Auction
         private String auctionID;
         private ViewModelChart bidsModel;
         private LineSeries l;
+        private int lastBid;
 
         public BidPage()
         {
@@ -58,13 +59,22 @@ namespace Auction
                     for (int i = 0; i < bids.Count; i++)
                     {
                         this.bidsModel.addBid(i + 1, (int)bids[i]["value"]);
+                        if (i == bids.Count - 1)
+                        {
+                            lastBid = (int)bids[i]["value"];
+                        }
                     }
+                }
+                else
+                {
+                    lastBid = minimumBid;
                 }
 
                 l.PointsSource = bidsModel;
 
                 nameTextBlock.Text = name;
                 minimumBidTextBlock.Text = "Mínimo: " + minimumBid.ToString() + "€";
+                lastBidTextBlock.Text = "Última oferta: " + lastBid.ToString() + "€";
 
                 Uri myUri = new Uri("http://neo.andrefreitas.pt:8083/api/photos/" + photoID, UriKind.Absolute);
                 BitmapImage bmi = new BitmapImage();
@@ -86,17 +96,26 @@ namespace Auction
             {
                 String customerID = (String)ApplicationData.Current.LocalSettings.Values["id"];
                 String value = bidTextBox.Text;
-                JObject bid = await API.bid(auctionID, customerID, value);
-                MessageBox.Show("Oferta realizada");
 
-                JArray auctions = await API.getAuctions();
-                JObject auction = (JObject)auctions.Where(a => (String)a["state"] == "open").First();
+                if (Convert.ToInt32(value) < lastBid)
+                {
+                    MessageBox.Show("Tem de realizar uma oferta de valor superior à última!");
+                } 
+                else 
+                {
+                    JObject bid = await API.bid(auctionID, customerID, value);
+                    MessageBox.Show("Oferta realizada");
 
-                int minimumBid = (int)auction["minimum_bid"];
-                JArray bids = (JArray)auction["bids"];
+                    JArray auctions = await API.getAuctions();
+                    JObject auction = (JObject)auctions.Where(a => (String)a["state"] == "open").First();
 
-                this.bidsModel.addBid(this.bidsModel.Count, Convert.ToInt32(value));
-                l.PointsSource = bidsModel;
+                    int minimumBid = (int)auction["minimum_bid"];
+                    JArray bids = (JArray)auction["bids"];
+
+                    this.bidsModel.addBid(this.bidsModel.Count, Convert.ToInt32(value));
+                    l.PointsSource = bidsModel;
+                }
+                
                 
             }
             catch (Exception ex)
