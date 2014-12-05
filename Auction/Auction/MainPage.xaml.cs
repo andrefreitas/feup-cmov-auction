@@ -68,10 +68,23 @@ namespace Auction
                 JObject json = await API.login(email, password);
                 String id = (string)json["id"];
                 ApplicationData.Current.LocalSettings.Values["id"] = id;
-                if ((String)json["auction"] != "") {
-                    this.NavigationService.Navigate(new Uri("/BidPage.xaml", UriKind.Relative));
+
+                JArray auctions = await API.getAuctions();
+                JArray openAuctions = (JArray)auctions.Where(a => (String)a["state"] == "open");
+                if (openAuctions.Count != 0)
+                {
+                    if ((String)json["auction"] != "")
+                    {
+                        this.NavigationService.Navigate(new Uri("/BidPage.xaml", UriKind.Relative));
+                    }
+                    else this.NavigationService.Navigate(new Uri("/HomePage.xaml", UriKind.Relative));
                 }
-                else this.NavigationService.Navigate(new Uri("/HomePage.xaml", UriKind.Relative));
+                else
+                {
+                    this.NavigationService.Navigate(new Uri("/LastAuctionPage.xaml", UriKind.Relative));
+                }
+
+                
             }
             catch (Exception ex)
             {
