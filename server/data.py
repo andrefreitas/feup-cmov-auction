@@ -113,7 +113,6 @@ class DataBase:
         else:
             return False
 
-
     def subscribe(self, auction_id, customer_id, channelURI):
         customer = self.db.customers.find_one(ObjectId(customer_id))
         auction = self.db.auctions.find_one(ObjectId(auction_id))
@@ -132,4 +131,4 @@ class DataBase:
             toast = MPNSToast()
             tile = MPNSTile()
             toast.send(doc["channelURI"], {'text1': 'Nova oferta', 'text2': 'Com o valor ' + str(bid_value) + ' eur'})
-            tile.send(doc["channelURI"], {'title': 'Nova oferta no valor de ' + str(bid_value) + ' eur', 'background_image': 'https://cdn3.iconfinder.com/data/icons/meanicons-base/512/meanicons_64-512.png'})
+            tile.send(doc["channelURI"], {'title': 'Nova oferta no valor de ' + str(bid_value) + ' eur'})
