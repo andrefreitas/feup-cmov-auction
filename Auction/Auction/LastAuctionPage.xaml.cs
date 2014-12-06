@@ -17,6 +17,7 @@ namespace Auction
         public LastAuctionPage()
         {
             InitializeComponent();
+            loadLastAuction();
         }
 
         public async void loadLastAuction() 
@@ -24,7 +25,7 @@ namespace Auction
             try
             {
                 JArray auctions = await API.getAuctions();
-                JObject auction = (JObject)auctions.Where(a => (String)a["state"] == "open").First();
+                JObject auction = (JObject)auctions.Where(a => (String)a["state"] == "finished").Last();
                 String name = (String)auction["name"];
                 String photoID = (String)auction["photo_id"];
                 int minimumBid = (int)auction["minimum_bid"];

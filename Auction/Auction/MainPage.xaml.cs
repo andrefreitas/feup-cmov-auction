@@ -70,8 +70,16 @@ namespace Auction
                 ApplicationData.Current.LocalSettings.Values["id"] = id;
 
                 JArray auctions = await API.getAuctions();
-                JArray openAuctions = (JArray)auctions.Where(a => (String)a["state"] == "open");
-                if (openAuctions.Count != 0)
+                bool hasOpen = false;
+                for (int i = 0; i < auctions.Count; i++)
+                {
+                    if ((string)auctions[i]["state"] == "open")
+                    {
+                        hasOpen = true;
+                    }
+                }
+                
+                if (hasOpen == true)
                 {
                     if ((String)json["auction"] != "")
                     {
