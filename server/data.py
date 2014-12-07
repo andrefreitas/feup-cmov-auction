@@ -78,26 +78,26 @@ class DataBase:
                 bids_size = len(auction["bids"])
                 if auction["bids"][bids_size-1]["value"] < value and value > auction["minimum_bid"]:
                     bid_doc = {
-                        "value": float(value),
+                        "value": int(value),
                         "date": datetime.datetime.utcnow(),
                         "customerID": ObjectId(customer_id)
                     }
 
                     self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$push": {"bids": bid_doc}}, True)
-                    self.send_notification(auction_id, float(value))
+                    self.send_notification(auction_id, int(value))
                     return True
                 else:
                     return False
             else:
                 if value > auction["minimum_bid"]:
                     bid_doc = {
-                        "value": float(value),
+                        "value": int(value),
                         "date": datetime.datetime.utcnow(),
                         "customerID": ObjectId(customer_id)
                     }
 
                     self.db.auctions.update({"_id": ObjectId(auction_id)}, {"$push": {"bids": bid_doc}}, True)
-                    self.send_notification(auction_id, float(value))
+                    self.send_notification(auction_id, int(value))
                     return True
                 else:
                     return False
