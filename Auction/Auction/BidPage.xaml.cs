@@ -38,6 +38,7 @@ namespace Auction
             l.PointsSource = bidsModel;
             chart.Series.Add(l);
             loadActiveAuction();
+            toastNotification();
         }
 
         public async void loadActiveAuction()
@@ -113,6 +114,7 @@ namespace Auction
 
                     int minimumBid = (int)auction["minimum_bid"];
                     JArray bids = (JArray)auction["bids"];
+                    lastBidTextBlock.Text = "Última oferta: " + value + "€";
 
                     this.bidsModel.addBid(this.bidsModel.Count, Convert.ToInt32(value));
                     l.PointsSource = bidsModel;
@@ -232,10 +234,30 @@ namespace Auction
 
             message.AppendFormat("Received Toast {0}:\n", DateTime.Now.ToShortTimeString());
 
+            
+
             // Parse out the information that was part of the message.
             foreach (string key in e.Collection.Keys)
             {
                 message.AppendFormat("{0}: {1}\n", key, e.Collection[key]);
+
+
+                Dispatcher.BeginInvoke(() =>
+                {
+                    //your operations go here
+                    if (key == "wp:Text2")
+                    {
+                        string value = e.Collection[key].Split(' ')[3];
+                        lastBidTextBlock.Text = "Última oferta: " + value + "€";
+
+                        this.bidsModel.addBid(this.bidsModel.Count, Convert.ToInt32(value));
+                        l.PointsSource = bidsModel;
+                    }
+                });
+                
+
+                
+
 
                 if (string.Compare(
                     key,

@@ -34,7 +34,7 @@ def login():
 def create_bid():
     response.content_type = 'application/json'
     customer_id = request.params.get("customerID")
-    value = float(request.params.get("value"))
+    value = int(request.params.get("value"))
     auction_id = request.params.get("auctionID")
     result = db.create_bid(value, customer_id, auction_id)
     if result is False:

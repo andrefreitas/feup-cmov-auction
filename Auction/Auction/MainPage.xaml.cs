@@ -10,6 +10,7 @@ using Microsoft.Phone.Shell;
 using Auction.Resources;
 using Newtonsoft.Json.Linq;
 using Windows.Storage;
+using System.Threading.Tasks;
 
 namespace Auction
 {
