@@ -232,14 +232,14 @@ namespace Auction
             StringBuilder message = new StringBuilder();
             string relativeUri = string.Empty;
 
-            message.AppendFormat("Received Toast {0}:\n", DateTime.Now.ToShortTimeString());
+            message.AppendFormat("Às {0}:\n", DateTime.Now.ToShortTimeString());
 
             
 
             // Parse out the information that was part of the message.
             foreach (string key in e.Collection.Keys)
             {
-                message.AppendFormat("{0}: {1}\n", key, e.Collection[key]);
+                message.AppendFormat(" {0}\n", e.Collection[key]);
 
 
                 Dispatcher.BeginInvoke(() =>
@@ -255,10 +255,6 @@ namespace Auction
                     }
                 });
                 
-
-                
-
-
                 if (string.Compare(
                     key,
                     "wp:Param",
